@@ -7,6 +7,7 @@ import datetime
 
 from scrapers import caledonia
 from scrapers import leaf
+from scrapers import stgeorgeshall
 
 SAMPLE_DIR = join(dirname(abspath(__file__)), 'sample_data')
 
@@ -43,6 +44,41 @@ class CaledoniaScraperTest(unittest.TestCase):
             [row['headline'] for row in self.rows])
 
 
+class StGeorgesHallTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        with open(join(SAMPLE_DIR, 'stgeorgeshall.html'), 'r') as f:
+            cls.rows = list(stgeorgeshall.process(f))
+
+    def test_correct_number_of_events(self):
+        assert_equal(7, len(self.rows))
+
+    def test_venue_always_st_georges_hall(self):
+        assert_equal(
+            set(["St George's Hall"]),
+            set([x['venue'] for x in self.rows]))
+
+    def test_all_dates_are_datetime_dates(self):
+        dates = [row['date'] for row in self.rows]
+        assert_true(
+            all([isinstance(date, datetime.date) for date in dates]))
+
+    def test_the_headlines_are_correct(self):
+        assert_equal(
+            [
+                'The Charlatans',
+                'In conversation with Lynda La Plante',
+            ],
+            [row['headline'] for row in self.rows[0:2]])
+
+        assert_equal(
+            [
+                "Murder at St George's Hall",
+                'Llyr Williams - piano'
+            ],
+            [row['headline'] for row in self.rows[-2:]])
+
+
 class LeafScraperTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -71,10 +107,10 @@ class LeafScraperTest(unittest.TestCase):
             'Leaf Pudding Club',
             'Retro Sunday',
         ],
-        [row['headline'] for row in self.rows[0:2]])
+            [row['headline'] for row in self.rows[0:2]])
 
         assert_equal([
             'Tea with an Architect',
             'Spotify Wednesdays'
         ],
-        [row['headline'] for row in self.rows[-2:]])
+            [row['headline'] for row in self.rows[-2:]])
