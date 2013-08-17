@@ -1,4 +1,4 @@
-MAILTO="dataservices@scraperwiki.com"
+MAILTO="paul@paulfurley.com"
 
 ################################## IMPORTANT! #######################################
 #
@@ -29,5 +29,5 @@ MAILTO="dataservices@scraperwiki.com"
 * * * * * crontab /home/tool/crontab.txt
 
 # Run the scraper. The only changes to this line should be the schedule.
-@daily /home/run.sh
+0 12 * * * /home/run.sh
 
