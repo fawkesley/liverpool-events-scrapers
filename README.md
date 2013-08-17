@@ -3,13 +3,13 @@
 ## Done
 
 * http://www.thecaledonialiverpool.com/whats-on/
+* http://www.thisisleaf.co.uk/#/on-bold-street/events/
 
 ## Pending
 
-* http://www.thisisleaf.co.uk/#/on-bold-street/events/
 * http://www.viewliverpool.co.uk/listings/
 * http://www.thelowdownmagazine.com/Events-3531.html
-* Mello Mellow (no info online atm, only poster scan)
+* Mello Mello (no info online atm, only poster scan)
 * Bombed out church
 * eventbrite
 * meetup
