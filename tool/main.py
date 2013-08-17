@@ -10,25 +10,31 @@ from collections import OrderedDict
 from cStringIO import StringIO
 import datetime
 import scraperwiki
+import logging
+
+import scrapers
+
 
 BASE_URL = 'http://www.google.com'
 UNIQUE_KEYS = []
 
 
 def main():
+    logging.basicConfig(level=logging.DEBUG)
     install_cache()
 
-    fobj = download_url(BASE_URL)
-    for row in process(fobj):
+    for row in scrapers.caledonia.main():
         scraperwiki.sqlite.save(
             unique_keys=UNIQUE_KEYS,
-            data=row)
+            data=row,
+            table_name='events')
+
     update_status()
 
 
 def update_status():
     status_text = 'Latest entry: {}'.format(
-        get_most_recent_record('swdata', 'date'))
+        get_most_recent_record('events', 'date'))
     print(status_text)
 
     scraperwiki.status('ok', status_text)
