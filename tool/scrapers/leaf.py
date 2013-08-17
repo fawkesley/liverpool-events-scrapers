@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import logging
-L = logging.getLogger('livlist.caledonia')
+L = logging.getLogger('livlist.leaf')
 import lxml.html
 from collections import OrderedDict
 import re
