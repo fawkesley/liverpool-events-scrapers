@@ -1,18 +1,19 @@
-# Data Source
+# Data Sources
 
-The data is generated from [some url](http://somewhere.com)
+## Done
 
-The raw data is stored in the **example** table.
+* http://www.thecaledonialiverpool.com/whats-on/
 
-# Processing
+## Pending
 
-Data in the **example** table is cleaned up using the **xyz** library.
-
-# Output
-
-The processed output is found in the **foo** table of the dataset.
-
-# Logging
-
-The scraper records a full log of each run in its [log directory](./log)
-
+* http://www.thisisleaf.co.uk/#/on-bold-street/events/
+* http://www.viewliverpool.co.uk/listings/
+* http://www.thelowdownmagazine.com/Events-3531.html
+* Mello Mellow (no info online atm, only poster scan)
+* Bombed out church
+* eventbrite
+* meetup
+* http://www.skiddle.com/whats-on/Liverpool/St-Luke%27s-%28Bombed-Out%29-Church/
+* http://www.campandfurnace.com/calendar/
+* http://www.palmhouse.org.uk/whats-on.php
+* http://www.stgeorgesliverpool.co.uk/whatson/
