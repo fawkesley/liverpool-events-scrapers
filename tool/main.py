@@ -24,12 +24,18 @@ def main():
     install_cache()
 
     for row in scrapers.caledonia.main():
-        scraperwiki.sqlite.save(
-            unique_keys=UNIQUE_KEYS,
-            data=row,
-            table_name='events')
+        save_row(row)
+    for row in scrapers.leaf.main():
+        save_row(row)
 
     update_status()
+
+
+def save_row(row):
+    scraperwiki.sqlite.save(
+        unique_keys=UNIQUE_KEYS,
+        data=row,
+        table_name='events')
 
 
 def update_status():

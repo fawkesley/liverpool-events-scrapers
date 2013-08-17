@@ -1,0 +1,969 @@
+<!-- Pages:  1 <a href="http://thisisleaf.co.uk/on-bold-street/events/2" 
+ class="pagination-link">2</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/3" 
+ class="pagination-link">3</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/4" 
+ class="pagination-link">4</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/5" 
+ class="pagination-link">5</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/6" 
+ class="pagination-link">6</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/7" 
+ class="pagination-link">7</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/8" 
+ class="pagination-link">8</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/9" 
+ class="pagination-link">9</a>
+  --><!-- Pages:  1 <a href="http://thisisleaf.co.uk/on-bold-street/events/2" 
+ class="pagination-link">2</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/3" 
+ class="pagination-link">3</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/4" 
+ class="pagination-link">4</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/5" 
+ class="pagination-link">5</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/6" 
+ class="pagination-link">6</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/7" 
+ class="pagination-link">7</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/8" 
+ class="pagination-link">8</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/9" 
+ class="pagination-link">9</a>
+  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<title>Leaf : Events</title>
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" href="http://f.fontdeck.com/s/css/JUIN46045GfimfnkCWW087iWwjs/thisisleaf.co.uk/6180.css" type="text/css" />
+<link href="http://fiks-html5.googlecode.com/hg/fiks.html.css" rel="stylesheet" />
+<link href="/stylesheets/nojs.css" id="css" rel="stylesheet" type="text/css" />
+
+<!-- JS Enabled CSS -->
+<script type="text/javascript" language="javascript">
+//document.getElementById('css').href = "/stylesheets/leaf.css?nocache=20120425";
+</script>
+<!-- 3rd party -->
+<script src="http://fiks-html5.googlecode.com/hg/fiks.html.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>-->
+<!-- jQuery Plugins -->
+<script src="/javascripts/jquery/jquery.js" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.easing.js" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.backgroundPosition.js" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.color.js" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.spinner.js" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.stagger.js" type="text/javascript" ></script>
+<script src="/javascripts/jquery/jquery.maximage.js" type="text/javascript"></script>
+<!-- Custom local JS -->
+<script type="text/javascript" language="javascript">
+//alert('line 40');
+</script>
+<script src="/javascripts/dark_check.js" type="text/javascript"></script>
+<!-- Ajaxify -->
+<script  src="/javascripts/ajaxify.js?nocache=20120425" type="text/javascript"></script>
+<!-- Cufon -->
+<script src="/javascripts/cufon-yui.js" type="text/javascript"></script>
+<script src="/javascripts/Karbon_Slab_Stencil_Regular_400-Karbon_Slab_Stencil_Bold_700.font.js" type="text/javascript"></script>
+<!--[if gte IE 9]>
+	<script type="text/javascript">
+		Cufon.set('engine', 'canvas');
+	</script>
+<![endif]-->
+<!-- Vars -->
+<script type="text/javascript">
+var event_shortcut = 'archives/2013/08/';
+var loaded = false;
+var finished_animating = false;
+var color = '#CCCCCC';
+var colors = [];
+var cache = [];
+var bg_timer;
+var defaultImg = bgImage = '/images/bg_placeholder.gif?nocache=1376769727972218879';
+var galleryImages = [];
+var archives = [];
+var gallery = false;
+var loader = '<div id="content_loader" style="display:none" class="loader"></div>';
+var gallery_instructions = '<div id="gallery_instructions"><a href="#" class="gallery-nav" id="prev_image">Previous</a><a href="#" class="gallery-nav" id="next_image">Next</a><h3>Use your keyboard to navigate<br />Left + Right arrow</h3></div>';
+var enter_a_site = '<li>Enter a site</li>';
+var large_logo = '<div id="large_logo" class="figure logo large-logo"><img src="/images/logo_l_large.png" alt="Large leaf Logo" /></div>';
+var curImg = 0;
+var tot_top_level = 0;
+var def_newsletter_text = "";
+</script>
+
+<!-- Ajaxify setup -->
+<script type="text/javascript">
+jQuery(document).ready(function(){	
+	// Reset elements that the static page will have created
+	$('.page').hide();
+	$event_link = $('a[href$="/events/"]');
+	if($event_link.length){
+		var e_href = $event_link.attr('href');
+		$event_link.attr('data-href',e_href+event_shortcut);
+	}
+	// --> Setup the wallpaper
+	if(bgImage != ''){
+		$('body').append('<img src="'+bgImage+'" class="bgmaximage" id="wallpaper" />');
+		$('img.bgmaximage').maxImage({
+			isBackground: true,
+			overflow:'auto'
+		});
+		
+	}
+	
+	// --> Basic click events
+	$('#click_newsletter').toggle(function(ev){
+		ev.preventDefault();
+		$('#newsletter_form').fadeIn();
+	},function(ev){
+		ev.preventDefault();
+		$('#newsletter_form').fadeOut();
+	});
+	
+	$('#newsletter_form input').focus(function(){
+		if(def_newsletter_text == "") def_newsletter_text = $(this).attr('value');
+		$(this).attr('value','');
+	});
+	
+	$('#newsletter_form input').blur(function(){
+		if($(this).attr('value') == "") $(this).attr('value',def_newsletter_text);
+	});
+	
+	// --> Setup ajaxify
+	ajaxify.setup({
+		homepage : 'home',
+		strip_script : false,
+		http_host : "thisisleaf.co.uk",
+		filter_response : false	,
+		auto_collect_links: false,
+		selectors: ['#nav a','a.more-link','.archive a','.pagination a']
+	});
+	
+	ajaxify.ready(function(){
+		
+		$('#ajaxify-data').hide();
+		$('.gallery').hide();
+		$('#ajaxify-data').css({opacity:0});
+		$('.selected').removeClass('selected');
+		
+		// Prepare any elements on the 'stage' before showing the page...
+		
+		// --> Timer for BG colours
+		set_background();
+		
+		// --> Split up the nav elements...
+	
+		tot_top_level = ($('#top_level').children().length);
+		$('#top_level').children().each(function(){
+			if($(this).children('a').length){
+				var id= $(this).children('a').attr('href');
+				id = id.replace(/\//gi,''); // Global case insensitive search for '/' (delimited by '/' so '/' has to be escaped...
+				var ul = '<ul id="'+id+'">'+$(this).children('ul').html()+'</ul>';
+				$(this).children('ul').remove();
+				$('#nav').append(ul);
+				$('#'+id).hide();
+				$('#'+id+' a.ajaxified').each(function(){
+					jQuery(this).unbind('click');
+					ajaxify.handle_click(jQuery(this));
+				});			
+				$(this).children('a').click(function(){
+					$('.current').removeClass('current');
+					$('#top_level').fadeOut(function(){$('#'+id).fadeIn();$('#'+id).addClass('current')});
+				});
+			}	
+			
+		});
+		$('#top_level').addClass('top-level');
+		
+		// Hide the necessarys (some hiding is done on the before ajax event for homepage specific elements)
+		update_cufon();
+		$('#logo').css({bottom:'-300px'}); // Finish @ 10px
+		$('#sidebar').css({left:'1200px',opacity:0,display:'none'}); // Finish @ 813px
+		$('#header').css({backgroundPosition:'315px 0',width:'1000px'}); // Finish @ 315px
+			
+		
+						
+	});
+	
+	ajaxify.on_before_ajax(function(target){
+		if(!ajaxify.requests){			
+			// First request...
+			
+			if(ajaxify.is_homepage){
+				// First request is for homepage...
+				
+				// Append the splash page for the home page...
+				if(tot_top_level == 1){
+					// Only one top level item, so show the main tweet...
+					var clickthrough = $('#top_level a:first').attr('href');
+					$('body').append('<a class="fullscreen" href="'+clickthrough+'" id="splash"></a>');
+					$('#splash').click(function(ev){
+						ev.preventDefault();
+						ajaxify.handle_link(jQuery(this));
+						var href = jQuery(this).attr('href');
+						$('#splash').remove();
+						// Hide the homepage elements / show the main elements...
+						$('#large_logo').animate({opacity:0},1500,'easeOutExpo');
+												
+						$('#top_level').fadeOut(function(){
+							$(this).css('filter','');
+							// Show the page (may still look empty...)
+							$('#header').css({backgroundPosition:'315px 0',filter:'',width:'1000px'}); // Finish @ 315px
+							$('#header').animate({backgroundPosition:'0 0', width:'315px'},1500,'easeOutExpo'); // Finish @ 315px
+							transition_nav_in(href);
+							$('#top_level').remove();
+							$('#nav').children('.cufon').remove();
+						});
+						// Animate in...
+						$('#logo').animate({bottom:'10px'},1500,'easeOutExpo',function(){
+							finished_animating = true;
+							target.css({display:'block'});	
+							target.animate({opacity:1},function(){
+								$(this).css('filter','');
+								ajaxify.on_after_fade_in();
+							});
+						});
+						
+						$('.page').show();
+						$('#sidebar').css({'display':'block'});
+						$('#sidebar').animate({left:'813px',opacity:1},1500,'easeOutExpo',function(){$(this).css('filter','');}); // Finish @ 813px
+						
+										
+					});
+					$('#top_level').html(('<li class="first-tweet">' + $('#tweet').html() + '</li>'));
+					// set a timeout to redirect
+					setTimeout(function()
+					{
+						$('#splash').trigger('click');
+					},6000);
+				}else{
+					$('#top_level').append(enter_a_site);
+				}
+				
+				// Swap the logo for the large one on the homepage
+				
+				$('#header').prepend(large_logo);
+				$('#header').css({backgroundPosition:'-315px 0'}); // Finish @ 315px
+				$('#large_logo').css({opacity:0}); // Finish @ 10px
+				$('#top_level').css({paddingTop:20,opacity:0}); // Finish @ 0, 1;
+				$('#sidebar').css({left:'1200px',opacity:0,display:'none'}); // FInsih @ 813px, 1
+				// Show the page (may still look empty...)
+				$('.page').show();
+				
+				// Animate in...
+				$('#top_level').animate({paddingTop:0,opacity:1},1500,'easeOutExpo',function(){$(this).css('filter','');});
+				$('#large_logo').animate({opacity:1},2500,'easeOutExpo',function(){$(this).css('filter','');});
+				
+				ajaxify.load_url();
+				
+			}else{
+				// First request is for some other page in this case...
+				show_loader();
+				// Find the relevant main menu and place that in the nav
+				$('#top_level').remove();
+				
+				// Position off screen...
+						
+				// Show the page (may still look empty...)
+				$('#header').css({opacity:0,width:'315px'});
+				$('.page').show();
+				var parent_nav = ajaxify.segment(0);
+				transition_nav_in(parent_nav);
+				transition_subnav(ajaxify.uri());
+				// Animate in...
+				$('#logo').animate({bottom:'10px'},1500,'easeOutExpo',function(){
+					finished_animating = true;
+					target.css({display:'block'});	
+					target.animate({opacity:1},function(){
+						ajaxify.on_after_fade_in();
+					});
+				});
+				$('#sidebar').css({'display':'block'});
+				$('#sidebar').animate({left:'813px',opacity:1},1500,'easeOutExpo'); // Finish @ 813px
+				$('#header').animate({backgroundPosition:'0 0',opacity:1},1500,'easeOutExpo',function(){$(this).css('filter','');}); // Finish @ 315px
+				
+				ajaxify.load_url();
+			}
+			
+		}else{
+			// Not the first request, just fade out...
+			show_loader();
+			$('#gallery_instructions').remove();
+			$('#wallpaper').animate({opacity:0});
+			transition_subnav(ajaxify.uri());
+			target.fadeOut(function(){
+				ajaxify.load_url();
+			});	
+		}
+	});
+	
+	ajaxify.on_after_ajax = function(target){	
+		
+		// Variable 'target' is the element the data was loaded into... (jQuery object)
+		$(window).resize();
+		// Hide the loader
+		hide_loader();
+		// Reset vars
+		re_init();		
+		// Check for gallery...
+		handle_gallery();
+		// Check for archives...
+		handle_archives();
+		
+		// Fade in the ajax region after response...
+		if(!ajaxify.is_homepage && finished_animating){
+			target.css({display:'block',opacity:0});	
+			target.animate({opacity:1},function(){
+				target.css({'filter':''});
+				ajaxify.on_after_fade_in();
+			});
+		}
+		
+		// Add the click events to the new page data
+		
+		this.add_new_click_events(target);
+	}
+	
+	ajaxify.on_after_fade_in = function(){
+		var p = this.url;
+		// Track google analytics here --> eg. pageTracker._trackPageview(p);
+		_gaq.push(['_trackPageview']);
+		
+		// Do anything here that needs the page to be visible before it happens, eg additional animations...
+		
+	}
+	ajaxify.start();
+});
+
+/* Transitional functions
+-----------------------------------*/
+
+function transition_nav_in(href){
+	href = href.replace('http://'+ajaxify.http_host+ajaxify.initial_path,'');
+	var id = href.replace(/\//gi,''); // Global case insensitive search for '/' (delimited by '/' so '/' has to be escaped...
+	var nav = $('#'+id);
+	
+	
+	nav.children('li').css({opacity:0,paddingLeft:20,display:'block'});
+	nav.css({display:'block'});
+	nav.children('li').stagger({interval:200},{opacity:1,paddingLeft:0});
+	var total =  nav.children('li').length;
+	
+	setTimeout("filter_off('#"+id+" *')",( (200 * (total - 1) ) + 1500 ));
+	//nav.children('li').animate({opacity:1,paddingLeft:0},function(){$(this).css('filter','');});*/
+		
+}
+
+function filter_off(selector){
+	$(selector).css({'filter':''});
+}
+
+function transition_subnav(href){
+	// Hide the current submenu
+	href = href.replace('http://'+ajaxify.http_host+ajaxify.initial_path,'');
+	var segments = href.split('/');	
+	var new_submenu = $('#nav a[href$="'+segments[0]+'/'+segments[1]+'/"]').siblings('ul');
+	if(!new_submenu.hasClass('current-submenu')){
+		if($('.current-submenu').length){
+			$('.current-submenu').addClass('removing');
+			$('.removing').removeClass('current-submenu');
+			$('.removing').animate({top: '60px',opacity:0}, 'easeOutQuint', function(){
+				$('.removing').hide();
+				$('.removing').removeClass('removing');			
+			});
+		}
+		
+		// Show the new menu
+		new_submenu.css({top:'20px',opacity:0,display:'block'});
+		new_submenu.animate({top: '0',opacity:1},1500,'easeOutExpo',function(){
+			$(this).css('filter','');
+			new_submenu.addClass('current-submenu');
+		});
+	}
+}
+
+function show_loader(){
+	return;
+	if(!$('#content_loader').length){
+		$('#main_content').append(loader);
+		var spinner = $('body').hasClass('dark') ? '/images/spinner.png' : '/images/spinner_light.png';
+			$("#content_loader").spinner({
+				height: 24,
+				width: 24,
+				speed: 50,
+				image: spinner
+			});
+	}
+	$('#content_loader').css({display:'block',left:-40});
+	$('#content_loader').animate({left:10,opacity:1},{easing: 'easeOutExpo'});
+}
+
+function hide_loader(){	
+	if($('#content_loader').length){
+		$('#content_loader').animate({opacity:0});
+	}
+}
+
+/* Gallery functions
+-------------------------------------*/
+
+function handle_gallery(){
+	$('.gallery').hide();
+	$('.gallery a').each(function(){
+		galleryImages.push($(this).attr('href'));
+		$(this).click(function(ev){
+			ev.preventDefault();			
+		});
+	});
+	
+	newBg = $('#new_wallpaper').attr('href');
+	if(newBg == ''){
+		newBg = defaultImg;
+		// Fade in the background colour
+		
+	}
+	
+	if(galleryImages.length >= 1) newBg = galleryImages[0];
+	if(galleryImages.length > 1){
+		$('#prev_image').hide();
+		gallery = true;
+		if(!ajaxify.is_homepage)
+		{
+			$('#header').append(gallery_instructions);
+			$('#prev_image').click(function(ev){
+				ev.preventDefault();
+				loadImg(curImg - 1);
+			});
+			
+			$('#next_image').click(function(ev){
+				ev.preventDefault();
+				loadImg(curImg + 1);
+			});
+			jQuery(document).keydown(function(e){
+				if (e.which == 37 && gallery == true) { // 37 is the left arrow key code.
+					e.preventDefault();
+					loadImg(curImg - 1);
+				};
+				if (e.which == 39 && gallery == true) { // 39 is the right arrow key code.
+					e.preventDefault();
+					loadImg(curImg + 1);
+				};
+			});
+			// Cufon
+			Cufon.replace('#gallery_instructions a',{ fontFamily: 'Karbon Slab Stencil Regular' }); 
+			Cufon.replace('#gallery_instructions h3',{ fontFamily: 'Karbon Slab Stencil Regular' });
+		}else{
+			newBg = galleryImages[Math.round(Math.random()*(galleryImages.length-1))]
+		}
+	}
+	
+	var tmp = new Image();
+	tmp.onload = function(){
+		$('#wallpaper').animate({opacity:0},function(){
+			$('#wallpaper').attr('src',newBg);
+			$('#wallpaper').animate({opacity:1});
+			
+		});	
+	}
+	tmp.src = newBg;
+	
+}
+
+	
+function loadImg(key){
+	if((key) == galleryImages.length){
+		key = 0;
+		
+	}else if((key < 0)){
+		key = (galleryImages.length - 1);
+		
+	}
+	
+	curImg = key;
+	
+	var alink = galleryImages[key];
+	show_loader();
+	var tmp = new Image();
+	tmp.onload = function(){
+		$('#wallpaper').animate({opacity:0},function(){
+			$('#wallpaper').attr('src',alink);
+			$('#wallpaper').animate({opacity:1});
+			hide_loader();
+		});	
+	}
+	tmp.src = alink;
+}
+
+/* Color functions
+----------------------------------------------*/
+
+function set_background(){
+	window.clearInterval(bg_timer);
+	bg_timer = window.setInterval('new_bg()',8000);
+	// Set class dark if background colour is dark
+	color = color.replace('#','');
+	colors = color.split(',');
+	color = colors.shift();
+	color = '#'+color;
+	colors.push(color);
+	//alert(colors);
+	update_bg();
+}
+
+function update_bg(){
+	color = color.replace('#','');
+	color = '#'+color;
+	if(dark(color) == true){
+		$('body').addClass('dark');				
+	}else{
+		$('body').removeClass('dark');
+	}
+	update_cufon();
+	$('body').animate({backgroundColor:color},3000);
+}
+
+function new_bg(){
+	if(colors.length > 1){
+		color = colors.shift();
+		update_bg();
+		
+		colors.push(color);
+	}
+}
+
+/* Font functions
+----------------------------------------------*/
+
+function update_cufon(){
+	// Replace Cufon text - have to do this on every request in case the foreground colour changes
+	
+	Cufon.replace('#nav',{ fontFamily: 'Karbon Slab Stencil Regular' }); 
+	Cufon.replace('h1, h3',{ fontFamily: 'Karbon Slab Stencil Regular' }); 
+	Cufon.replace('.address',{ fontFamily: 'Karbon Slab Stencil Regular' }); 
+	Cufon.replace('#gallery_instructions a',{ fontFamily: 'Karbon Slab Stencil Regular' }); 
+	Cufon.replace('#gallery_instructions h3',{ fontFamily: 'Karbon Slab Stencil Regular' }); 
+	Cufon.replace('.form button',{ fontFamily: 'Karbon Slab Stencil Regular' });
+	
+	$('.nav a').hover(function(){$(this).stop().animate({opacity:0.5},1500,'easeOutExpo')},function(){$(this).stop().animate({opacity:1},1500,'easeOutExpo')})
+}
+
+/* List functions
+---------------------------------------------*/
+
+function handle_archives(){
+	// Build events menu...(will only be done if there's an event list on the page)
+	if($('.archive').length){
+		var request_uri = ajaxify.uri();
+		uri_arr = request_uri.split('/');
+		key = request_uri.replace(/archives\/[0-9]+\/[0-9]+/,'');
+		key =  key.replace(/\/\//,'/');
+		
+		$('.archive').hide();
+		if(!in_array(key,archives)){
+			var archive_li = $('#nav a[href$="'+key+'"]').parent('li');
+			
+			if(archive_li.children('ul').length){
+				var archive_html = $('.archive ul').html()
+				archive_li.children('ul').append('<li>-</li>');
+				archive_li.children('ul').append(archive_html)
+			}else{
+				archive_li.append($('.archive').html());
+			}
+			archive_li.find('ul').find('a').each( function(ev) {		
+				jQuery(this).unbind('click');
+				ajaxify.handle_click(jQuery(this));
+			});
+			archives.push(key);
+			// Cufon
+			update_cufon();
+			transition_subnav(key);
+		}
+	}
+}
+
+
+/* Utility functions
+----------------------------------------------*/
+
+function re_init()
+{
+	galleryImages = [];
+	gallery = false;
+	curImg = 0;
+	set_background();
+}
+
+</script>
+
+</head>
+
+<body class="page">
+
+<div id="header" class="header col">
+	<div id="logo" class="figure logo">
+		<a href="/"><img src="/images/logo-med.png" alt="Leaf" width="126" height="163" title="Leaf" /></a>
+	</div>	
+	<!-- end #logo -->
+	<nav id="nav" class="nav">
+		<ul id="top_level"><li class="first li-level-1 last selected parent"><a href="/on-bold-street/" accesskey="o" title="On Bold Street ( Access Key 'o' )"><span class="access_key">O</span>n Bold Street<span class="nav_span"></span></a><ul class="ul-level-2"><li class="first li-level-2 parent"><a href="/on-bold-street/about/" title="About">About<span class="nav_span"></span></a><ul class="ul-level-3"><li class="first li-level-3"><a href="/on-bold-street/about/our-story/" title="OUR STORY">OUR STORY<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/about/values/" title="VALUES">VALUES<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/about/why-tea/" title="Why Tea?">Why Tea?<span class="nav_span"></span></a></li><li class="li-level-3 last"><a href="/on-bold-street/about/leaf-access-statement-3/" title="LEAF Access Statement">LEAF Access Statement<span class="nav_span"></span></a></li></ul></li><li class="li-level-2"><a href="/on-bold-street/news/" title="News">News<span class="nav_span"></span></a></li><li class="li-level-2 selected"><a href="/on-bold-street/events/" title="Events">Events<span class="nav_span"></span></a></li><li class="li-level-2"><a href="/on-bold-street/tickets/" title="Tickets">Tickets<span class="nav_span"></span></a></li><li class="li-level-2 parent"><a href="/on-bold-street/clubs/" title="CLUBS">CLUBS<span class="nav_span"></span></a><ul class="ul-level-3"><li class="first li-level-3"><a href="/on-bold-street/clubs/book-club/" title="Book Club">Book Club<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/clubs/pudding-club/" title="Pudding Club">Pudding Club<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/clubs/chess-club/" title="Chess Club">Chess Club<span class="nav_span"></span></a></li><li class="li-level-3 last"><a href="/on-bold-street/clubs/scrabble-club/" title="Scrabble Club">Scrabble Club<span class="nav_span"></span></a></li></ul></li><li class="li-level-2 parent"><a href="/on-bold-street/menus/" title="MENUS">MENUS<span class="nav_span"></span></a><ul class="ul-level-3"><li class="first li-level-3"><a href="/on-bold-street/menus/breakfast-menu/" title="Breakfast Menu">Breakfast Menu<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/menus/drinks-menu/" title="Drinks Menu">Drinks Menu<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/menus/canape-menu/" title="Canape Menu">Canape Menu<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/menus/buffet-menus/" title="Buffet Menus">Buffet Menus<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/menus/cake-selection/" title="Cake Selection">Cake Selection<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/menus/afternoon-tea/" title="Afternoon Tea">Afternoon Tea<span class="nav_span"></span></a></li><li class="li-level-3 last"><a href="/on-bold-street/menus/cafe-menu-3/" title="Cafe Menu">Cafe Menu<span class="nav_span"></span></a></li></ul></li><li class="li-level-2"><a href="/on-bold-street/our-tea/" title="Our Tea">Our Tea<span class="nav_span"></span></a></li><li class="li-level-2"><a href="/on-bold-street/gallery/" title="Gallery">Gallery<span class="nav_span"></span></a></li><li class="li-level-2 parent"><a href="/on-bold-street/family/" title="Family">Family<span class="nav_span"></span></a><ul class="ul-level-3"><li class="first li-level-3"><a href="/on-bold-street/family/the-garden-by-leaf-at-fact/" title="The Garden by LEAF, at FACT">The Garden by LEAF, at FACT<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/secret-space-2/" title="Secret Space">Secret Space<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/sb-studio/" title="SB Studio">SB Studio<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/angela-adlard/" title="Angela Adlard">Angela Adlard<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/zara-grey/" title="Zara Grey">Zara Grey<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/sevenstreets/" title="Sevenstreets ">Sevenstreets <span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/soundmob/" title="Soundmob">Soundmob<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/r2a/" title="R2A">R2A<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/dan-kenyon/" title="Dan Kenyon">Dan Kenyon<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/merseyside-acme/" title="Merseyside Acme">Merseyside Acme<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/visit-liverpool/" title="Visit Liverpool">Visit Liverpool<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/life-drawing-3/" title="Life Drawing">Life Drawing<span class="nav_span"></span></a></li><li class="li-level-3"><a href="/on-bold-street/family/ceri-hand-gallery/" title="Ceri Hand Gallery">Ceri Hand Gallery<span class="nav_span"></span></a></li><li class="li-level-3 last"><a href="/on-bold-street/family/beatnik/" title="Beatnik">Beatnik<span class="nav_span"></span></a></li></ul></li><li class="li-level-2"><a href="/on-bold-street/awards/" title="AWARDS">AWARDS<span class="nav_span"></span></a></li><li class="li-level-2"><a href="/on-bold-street/press/" title="Press">Press<span class="nav_span"></span></a></li><li class="li-level-2"><a href="/on-bold-street/contact/" title="Contact">Contact<span class="nav_span"></span></a></li><li class="li-level-2 last"><a href="/on-bold-street/hours/" title="Hours">Hours<span class="nav_span"></span></a></li></ul></li></ul>
+	</nav>
+	<!-- end #nav -->
+</div>
+<!-- end #header -->
+
+	
+<article id="main_content" class="article main-content col">
+	<div id="ajaxify-data">
+	
+<script type="text/javascript">
+is_homepage = 0;
+color = "#4A766E";
+
+
+$(document).ready(function(){
+	// Re-initialise when the page is ready...
+	//do_init();	
+});
+</script>
+
+
+<a id="new_wallpaper" href="" style="display:none">View background image</a>
+
+
+
+
+
+<div class="archive">	
+	<ul><li><a href="/on-bold-street/events/">All</a></li><li>This Month<ul class="event-archive-list"><li class="selected"><a href="/on-bold-street/events/archives/2013/08/">August 2013 (12)</a></li></ul></li><li>Future Events<ul class="event-archive-list"></ul></li><li>Past Events<ul class="event-archive-list"><li class="selected"><a href="/on-bold-street/events/archives/2013/07/">July 2013 (10)</a></li><li class="selected"><a href="/on-bold-street/events/archives/2013/06/">June 2013 (17)</a></li><li class="selected"><a href="/on-bold-street/events/archives/2013/05/">May 2013 (20)</a></li><li class="selected"><a href="/on-bold-street/events/archives/2013/04/">April 2013 (14)</a></li><li class="selected"><a href="/on-bold-street/events/archives/2013/03/">March 2013 (16)</a></li><li class="selected"><a href="/on-bold-street/events/archives/2013/02/">February 2013 (14)</a></li><li class="selected"><a href="/on-bold-street/events/archives/2013/01/">January 2013 (17)</a></li><li><a href="/on-bold-street/events/archives/2012/12/">December 2012 (16)</a></li><li><a href="/on-bold-street/events/archives/2012/11/">November 2012 (17)</a></li><li><a href="/on-bold-street/events/archives/2012/10/">October 2012 (22)</a></li></ul></li></ul>
+</div>
+
+<p class="caption pagination">Pages:  1 <a href="http://thisisleaf.co.uk/on-bold-street/events/2" 
+ class="pagination-link">2</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/3" 
+ class="pagination-link">3</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/4" 
+ class="pagination-link">4</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/5" 
+ class="pagination-link">5</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/6" 
+ class="pagination-link">6</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/7" 
+ class="pagination-link">7</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/8" 
+ class="pagination-link">8</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/9" 
+ class="pagination-link">9</a>
+ </p>
+<h3>Leaf Pudding Club August 2013</h3>
+	<p class="caption">27/08/2013</p>
+	<img src="/resources/273/3_2_1_body_image.jpg" width="460"  alt="" title="" />
+	
+	<font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">Tuesday 27th
+August</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">LEAF Pudding
+Club</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">LEAF Pudding
+Club celebrates our love of the sweet stuff, not just for one or two courses,
+but five. All of our puddings are homemade by our pastry chef Damien and it
+wouldn’t be a LEAF Pud Club without it all being washed down and topped off
+with a perfectly matched cup of tea. </o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">6.30pm
+doors, 7pm starts promptly / First Floor / £11.95</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">Tickets
+available from: www.thisisleaf.co.uk</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">---</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/leaf-pudding-club-2/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Retro Sunday August 2013</h3>
+	<p class="caption">25/08/2013</p>
+	<img src="/resources/159/Coats_body_image.jpg" width="460"  alt="" title="" />
+	
+	<font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">Sunday 25th
+August</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">Retro Sunday</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">A vintage
+feast fit for kings. Leave the mundane high street behind and step into the
+world of retro threads… If you love vintage/retro but have never dared buy
+before, now is the time to discover some unique and special pieces. This
+boutique vintage fair is the perfect chance to bag something stylish, original
+and highly affordable all in the relaxed setting of LEAF. Gather your friends
+and revel in Retro Sundays.</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">11am - 5pm /
+First Floor / Free Entry</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">---</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/retro-sunday-25th-august-2013/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Harvest Sun Presents: Allah Las, August 2013</h3>
+	<p class="caption">21/08/2013</p>
+	
+	<font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">Wednesday
+21st August</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">Harvest Sun
+Presents: Allah-Las</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">Check them
+out here: http://www.youtube.com/watch?v=IpRh5bChBSM</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">Doors 7.30pm
+/ First Floor / £8 – Tickets available from
+http://www.ticketweb.co.uk/event/allah-las-tickets/72883</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font><p class="MsoNormal" style="margin: 0cm 0cm 10pt;"><span style="line-height: 115%; font-size: 12pt;"><font face="Calibri">---</o:p></font></span></p><font face="Times New Roman" size="3">
+
+</font>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/harvest-sun-presents-allah-las-august-2013/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Urban Craft Collective Knitting Club August 2013</h3>
+	<p class="caption">12/08/2013</p>
+	<img src="/resources/384/3_body_image.jpg" width="460"  alt="" title="" />
+	
+	<p class="MsoNormal"><font><span style="font-family: Arial;">Urban Craft Collective’s Knitting Club</span></font><font><span style="font-family: Arial;">&nbsp;</span></font></p><font></font><p class="MsoNormal"><font><span style="font-family: Arial;">A nifty little crafting group that want to spread their expertise across the land. Whether you want to perk up your purl stitch or increase your rate of cross-stitch there is something for all. Swap, share, natter and be inspired whilst sipping on a delightful cuppa and gorging on a rich chocolate cake.</span></font><font><span style="font-family: Arial;">&nbsp;</span></font></p><p class="MsoNormal"><font><span style="font-family: Arial;"></span></font><font><span style="font-family: Arial;">Whether you’re a novice or a pro, pop along with your needles and hooks. For further information please contact Kate Blakemore via <a href="mailto:urbancraftcollective@gmail.com" target="_blank">urbancraftcollective@gmail.com</a></span></font></p><p class="MsoNormal"><font><b><span style="font-family: Arial;">7pm - 9pm / Ground Floor / Free Entry<span style="color: white;"> </span></span></b></font></p><font></font><p class="MsoNormal"><font><span style="font-family: Arial;"></span></font></p><font></font><p class="MsoNormal"><font><span style="font-family: Arial;">---</span></font></p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/urban-craft-collectives-knitting-club/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Kin Creative Network Presents: Thinking Session2 - Liverpool-Location or Global Production Hot spot?</h3>
+	<p class="caption">08/08/2013</p>
+	
+	<p>The Liverpool Film Office (LFO) is the longest established independent resource of its kind in the UK. Over the past 10 years the LFO has attracted an estimated &pound;100m of inward investment into the local economy and has been responsible for attracting large scale Hollywood feature films to the city.  But whilst Liverpool boasts that it is &ldquo;the most filmed city in the UK outside of London&rdquo; this is only part of the economic picture. The city is home to a number of independent film companies who are creating very successful productions despite a difficult financial environment and limited studio and post production facilities.</p>
+<p>MC'd by Neil Atkinson of The Anfield Wrap and Film First, this session invites the audience to discuss the challenges faced by the local independent film sector, how individual companies are overcoming these challenges and how the independent community, the city and industry bodies could work together put Liverpool on the global production map.     Panellists:  Roy Boulter - Hurricane Films Cllr.Paul Brant - Liverpool City Council (Deputy Mayor) Caroline Cooper-Charles - Creative England Neil Fitzmaurice - North Star Productions Dave Hughes - Red Union Films Sol Papadopoulos - Hurricane Films</p>
+<p>5.30pm - 6.30pm, followed by a Kin social from 6.30pm - 8.30pm / First Floor / Free entry but registration required: http://www.eventbrite.com/event/7590925663</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/kin-creative-network-presents-thinking-session2-liverpool-location-or-global-production-hot-spot/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Soundtrack at The Garden</h3>
+	<p class="caption">07/08/2013</p>
+	
+	<p class="MsoNormal" style="margin-top: 0.1pt;"><font><span style="font-family: Arial;"> </span></font><font><span style="font-family: Arial;">Film and Music - the wedding of the century. </span></font></p><p class="MsoNormal" style="margin-top: 0.1pt;"><font><span style="font-family: Arial;"></span></font><font><span style="font-family: Arial;">What is the magic of cinema without the emotion of music? We play a different film soundtrack in its entirety each week and sink into the minds of the world's greatest film composers. From Gabriel Yared, John Barry and John Williams, to Trent Reznor, John Carpenter and David Holmes. </span></font></p><font></font><p class="MsoNormal" style="margin-top: 0.1pt;"><font><b><span style="font-family: Arial;">7.30pm / The Garden at FACT / Free Entry </span></b></font></p><font></font><p class="MsoNormal"><font><span style="font-family: Arial;">--- </span></font></p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/soundtrack-at-the-garden/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Create and Write Presents Seven Sessions - Workshops for Aspiring Writers</h3>
+	<p class="caption">07/08/2013</p>
+	
+	<p>Explore fiction writing in Seven Sessions - a series of workshops designed to help you find your storytelling voice in the friendly and welcoming surroundings of LEAF. Following an introductory session, workshops explore plot, character, dialogue, viewpoint and style. Bring pen and paper!</p>
+<p>7.30pm / First Floor / &pound;4 OTD</p>
+<p>For further details please contact susimoore@hotmail.co.uk or www.facebook.com/createandwrite.</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/create-and-write-presents-seven-sessions-workshops-for-aspiring-writers-3/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Spotify Wednesdays - August </h3>
+	<p class="caption">07/08/2013</p>
+	<img src="/resources/366/Jukebox276_body_image.jpg" width="460"  alt="" title="" />
+	
+	<p>Wednesdays in August (7<sup>th</sup>, 14<sup>th</sup>, 21<sup>st</sup>, 28<sup>th</sup>)</p>
+<p>Every Wednesday LEAF lets you indulge in some of your favourite tracks, old and new, via the most contemporary of all the world&rsquo;s jukeboxes, Spotify.</p>
+<p>8pm / Ground Floor / Free Entry</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/spotify-wednesdays-august/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Out of the Bedroom: Acoustic Open Mic - Tuesdays in August </h3>
+	<p class="caption">06/08/2013</p>
+	<img src="/resources/39/johnnysands_body_image.png" width="460"  alt="" title="" />
+	
+	<p>Tuesdays in August (6<sup>th</sup>, 13<sup>th</sup>, 20<sup>th</sup>, 27<sup>th</sup>)</p>
+<p>Nothing beats an evening of live music, especially in Liverpool, a place famed for our love of making music and for sternly supporting our very talented up and coming artists. Out of the Bedroom Open Mic is a perfect example of local talent standing strong, with a packed house and great atmosphere every Tuesday night.</p>
+<p>Bring your own instrument and original songs for a chance to perform.</p>
+<p>8.30pm / Ground Floor / Free Entry</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/out-of-the-bedroom-acoustic-open-mic-tuesdays-in-august/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Life Drawing - August </h3>
+	<p class="caption">04/08/2013</p>
+	<img src="/resources/382/frontImage_body_image.jpg" width="460"  alt="" title="" />
+	
+	<p>Sunday 4<sup>th</sup> and 18<sup>th</sup> August</p>
+<p>A mini holiday for the creative mind &ndash; equipping you with a variety of art materials and challenging the typical conceptions of Model Drawing, all levels are welcome. Guidance provided.</p>
+<p>Follow the cohorts of Liverpool Life Drawing on Tumblr <a href="http://lifedrawingliverpool.tumblr.com/">http://lifedrawingliverpool.tumblr.com/</a></p>
+<p>7pm &ndash; 10pm / First Floor / &pound;9 OTD</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/life-drawing-august-2/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Silent Sleep </h3>
+	<p class="caption">01/08/2013</p>
+	
+	<p>Silent Sleep return from their jaunt to Australia playing shows with Dr. Karl Kennedy (FROM BLOODY NEIGHBOURS!!) and head straight to LEAF to play songs from their debut album, Walk Me To The Sea, which has been receiving rave reviews from the likes of The Guardian, Louder Than War and airplay from BBC 6Music. The project of one Chris McIntosh, Silent Sleep bring warm, heartfelt melancholic pop and will be performing with full band on the night. Also on the bill are long-time Liverpool favourites Voo, whose blend of beautiful melodies and intricate guitar work recall bands like Husker D&uuml; and Dinosaur Jr. The line up is completed by Puzzle, whose nostalgiac guitar-pop, led by brother and sister David and Lucy Johnson, makes for a stellar line-up.</p>
+<p>Doors 8pm / First Floor / &pound;2</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/silent-sleep/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Jelly Liverpool</h3>
+	<p class="caption">01/08/2013</p>
+	<img src="/resources/367/OpenLabs01_body_image.jpg" width="460"  alt="" title="" />
+	
+	<p>Thursday 1<sup>st</sup> and 15<sup>th</sup> August</p>
+<p>Don&rsquo;t labour alone in the solitary salt mines! Jelly Liverpool is a casual all day work-together for anyone with a laptop and some grafting to be done. Surround yourself with fun, creative people and maybe pick up a bit of what they do too, twice monthly at LEAF on Bold St. Whether you&rsquo;re a creative who needs inspiration or a professional who wants to escape from cabin fever or home hum-drum, Jelly welcomes you to get involved with a cup of tea and a delicious sandwich.&nbsp;</p>
+<p>9am &ndash; 5pm / First Floor / Free Entry</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/jelly-liverpool-3/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>LEAF Pudding Club - July </h3>
+	<p class="caption">30/07/2013</p>
+	<img src="/resources/273/3_2_1_body_image.jpg" width="460"  alt="" title="" />
+	
+	<p>LEAF Pudding Club celebrates our love of the sweet stuff, not just for one or two courses, but five. All of our puddings are homemade by our pastry chef Damien and it wouldn&rsquo;t be a LEAF Pud Club without it all being washed down and topped off with a perfectly matched cup of tea.</p>
+<p>6.30pm doors, 7pm starts promptly / First Floor / &pound;11.95</p>
+<p>Tickets available from: <a href="http://www.thisisleaf.co.uk">www.thisisleaf.co.uk</a></p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/leaf-pudding-club-july-2/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Retro Sunday - July </h3>
+	<p class="caption">28/07/2013</p>
+	<img src="/resources/165/coats_and_alein__body_image.jpg" width="460"  alt="" title="" />
+	
+	<p>A vintage feast fit for kings. Leave the mundane high street behind and step into the world of retro threads&hellip; If you love vintage/retro but have never dared buy before, now is the time to discover some unique and special pieces. This boutique vintage fair is the perfect chance to bag something stylish, original and highly affordable all in the relaxed setting of LEAF. Gather your friends and revel in Retro Sundays.</p>
+<p>11am - 5pm / First Floor / Free Entry</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/retro-sunday-july-2/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Create and Write Presents Seven Sessions - Workshops for Aspiring Writers</h3>
+	<p class="caption">10/07/2013</p>
+	
+	<p>Wednesday 10<sup>th</sup> July</p>
+<p>Explore fiction writing in Seven Sessions - a series of workshops designed to help you find your storytelling voice in the friendly and welcoming surroundings of LEAF on Bold St. Following an introductory session, workshops explore plot, character, dialogue, viewpoint and style. Bring pen and paper!</p>
+<p>7:30pm / First Floor / &pound;4 OTD</p>
+<p>For further details please contact susimoore@hotmail.co.uk or www.facebook.com/createandwrite.</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/create-and-write-presents-seven-sessions-workshops-for-aspiring-writers-3/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Urban Craft Collective's Knitting Club - July </h3>
+	<p class="caption">08/07/2013</p>
+	<img src="/resources/408/kntting1_body_image.jpg" width="460"  alt="" title="" />
+	
+	<p>A nifty little crafting group that want to spread their expertise across the land. Whether you want to perk up your purl stitch or increase your rate of cross-stitch there is something for all. Swap, share, natter and be inspired whilst sipping on a delightful cuppa and gorging on a rich chocolate cake.</p>
+<p>Whether you&rsquo;re a novice or a pro, pop along with your needles and hooks. For further information please contact Kate Blakemore via urbancraftcollective@gmail.com</p>
+<p>7pm - 9pm / Ground Floor / Free Entry</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/urban-craft-collectives-knitting-club-july/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Life Drawing - July</h3>
+	<p class="caption">07/07/2013</p>
+	<img src="/resources/382/frontImage_body_image.jpg" width="460"  alt="" title="" />
+	
+	<p>Sunday 7<sup>th</sup> and 21<sup>st</sup> July</p>
+<p>A mini holiday for the creative mind &ndash; equipping you with a variety of art materials and challenging the typical conceptions of Model Drawing, all levels are welcome. Guidance provided.</p>
+<p>Follow the cohorts of Liverpool Life Drawing on Tumblr <a href="http://lifedrawingliverpool.tumblr.com/">http://lifedrawingliverpool.tumblr.com/</a></p>
+<p>7pm &ndash; 10pm / First Floor / &pound;9 OTD</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/life-drawing-july-2/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Jelly Liverpool</h3>
+	<p class="caption">04/07/2013</p>
+	<img src="/resources/367/OpenLabs01_body_image.jpg" width="460"  alt="" title="" />
+	
+	<p>Thursday 4<sup>th</sup> and 18<sup>th</sup> July</p>
+<p>Don&rsquo;t labour alone in the solitary salt mines! Jelly Liverpool is a casual all day work-together for anyone with a laptop and some grafting to be done. Surround yourself with fun, creative people and maybe pick up a bit of what they do too, twice monthly at LEAF on Bold St. Whether you&rsquo;re a creative who needs inspiration or a professional who wants to escape from cabin fever or home hum-drum, Jelly welcomes you to get involved with a cup of tea and a delicious sandwich.</p>
+<p>9am &ndash; 5pm / First Floor / Free Entry</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/jelly-liverpool-3/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Tea with an Architect - July</h3>
+	<p class="caption">03/07/2013</p>
+	
+	<p>Whether you&rsquo;re thinking about building something from scratch, trying to decide whether that house you&rsquo;ve seen at the estate agent could realise its potential, or just thinking about extending your own home, one of our <em>Tea with an Architect</em> sessions is a great opportunity for you to bring in your ideas, designs and questions, and benefit from a free consultation.</p>
+<p>TEA WITH AN ARCHITECT is a series of events around the country where you are invited to come and have a chat and a cup of tea with architects in your area.</p>
+<p>For more information please visit: www.teawithanarchitect.com/</p>
+<p>5.30pm &ndash; 8.30pm / The Garden at FACT / Free Entry</p>
+<p>---</p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/tea-with-an-architect-july/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+<h3>Spotify Wednesdays - July </h3>
+	<p class="caption">03/07/2013</p>
+	<img src="/resources/366/Jukebox276_body_image.jpg" width="460"  alt="" title="" />
+	
+	<p>Wednesdays in July (3<sup>rd</sup>, 10<sup>th</sup>, 17<sup>th</sup>, 24<sup>th</sup> 31<sup>st</sup>)&nbsp;</p>
+<p>Every Wednesday LEAF lets you indulge in some of your favourite tracks, old and new, via the most contemporary of all the world&rsquo;s jukeboxes, Spotify.&nbsp;</p>
+<p>8pm / Ground Floor / Free Entry</p>
+<p>---<strong><br /></strong></p>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http://thisisleaf.co.uk/on-bold-street/events/spotify-wednesdays-july/&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+
+<p class="caption pagination">Pages:  1 <a href="http://thisisleaf.co.uk/on-bold-street/events/2" 
+ class="pagination-link">2</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/3" 
+ class="pagination-link">3</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/4" 
+ class="pagination-link">4</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/5" 
+ class="pagination-link">5</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/6" 
+ class="pagination-link">6</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/7" 
+ class="pagination-link">7</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/8" 
+ class="pagination-link">8</a>
+ <a href="http://thisisleaf.co.uk/on-bold-street/events/9" 
+ class="pagination-link">9</a>
+ </p>
+
+	
+	</div>
+</article>
+<!-- end #main_content -->		
+
+
+<div id="sidebar" class="section sidebar col">
+	<h4 class="twitter-heading">
+	<a id="tweet" href="http://twitter.com/leafteashop/" target="_blank">No recent tweets...</a></h4>
+   
+	
+	<nav class="nav social-nav">
+		<ul>
+			<li><a class="social-link facebook-link" target="_blank" href="http://www.facebook.com/group.php?gid=53702533898">Follow us on Facebook</a></li>
+			<li><a class="social-link newsletter-link" href="#" id="click_newsletter">Sign up to our newsletter</a></li>
+		</ul>
+	</nav>
+	<!-- end #nav -->
+	
+	<div class="newsletter">
+		<div class="form" id="newsletter_form">
+		<form action="http://thisisleaf.co.uk/form/process" enctype="multipart/form-data" method="post">
+			<script src="/application/admin/javascripts/jquery/jquery.validate.js" type="text/javascript"></script>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							$("form").each(function(){
+								$(this).validate();
+							});
+						});
+					</script><div class='formContainer'>
+	<div class='formRow'><div class='formCell label'><label class=''>Your email:*</label><!-- end .form_cell --></div><div class='formCell input'><span class="inputSpan"><input type="text" class="textBox required email" name="email" id="id_email" value="Your email" /><span class="inputAfter"></span></span><!-- end .form_cell --></div><!-- end .form_row --></div>
+	<input type='hidden' name='required' value='email' />
+	<input type='hidden' name='form_id' value='3' />
+	<input type='hidden' name='language_id' value='1' /></div>
+			<input type="hidden" name="redirect" value="http://thisisleaf.co.uk/on-bold-street/contact/form-success/"/>
+			<input type="hidden" name="missing_fields_redirect" value="http://thisisleaf.co.uk/on-bold-street/contact/form-failure/"/>
+			<button type="submit">GO</button>
+		</form>
+		</div>
+	</div>
+	<!-- end .newsletter -->
+	
+	<address id="address" class="address">
+		<p><a href="http://www.sb-studio.co.uk" target="_blank">Website by&nbsp;<br />SB Studio</a></p>
+	</address>
+</div>
+<!-- end #sidebar -->
+
+<footer id="footer" class="footer">
+	<p>&copy; 2009 Leaf Tea Shop Limited</p>
+</footer>
+<!-- end #footer -->
+
+<script>
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26808340-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
+
