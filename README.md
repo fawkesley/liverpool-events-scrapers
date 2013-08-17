@@ -1,3 +1,7 @@
+# Aim
+
+* Arts, Crafts, History, Music and Culture.
+
 # Data Sources
 
 ## Done
@@ -18,8 +22,15 @@
 * http://www.campandfurnace.com/calendar/
 * http://www.palmhouse.org.uk/whats-on.php
 
-# Fields
+# Essential Fields
 
 1. date
 2. venue
 3. headline
+
+# Optional Fields
+
+* image
+* url
+* description
+* organiser
