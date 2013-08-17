@@ -16,7 +16,7 @@ import scrapers
 
 
 BASE_URL = 'http://www.google.com'
-UNIQUE_KEYS = []
+UNIQUE_KEYS = ['venue', 'date', 'headline']
 
 
 def main():
