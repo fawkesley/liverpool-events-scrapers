@@ -68,13 +68,13 @@ class LeafScraperTest(unittest.TestCase):
     def test_the_headlines_are_correct(self):
         self.maxDiff = None
         assert_equal([
-            'Leaf Pudding Club August 2013',
-            'Retro Sunday August 2013',
+            'Leaf Pudding Club',
+            'Retro Sunday',
         ],
         [row['headline'] for row in self.rows[0:2]])
 
         assert_equal([
-            'Tea with an Architect - July',
-            'Spotify Wednesdays - July '
+            'Tea with an Architect',
+            'Spotify Wednesdays'
         ],
         [row['headline'] for row in self.rows[-2:]])
