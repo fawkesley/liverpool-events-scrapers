@@ -32,14 +32,14 @@ class CaledoniaScraperTest(unittest.TestCase):
 
     def test_the_headlines_are_correct(self):
         assert_equal([
-            'Loose Moose String Band',
-            'Cajun Session',
-            'Buffalo Clover (from Nashville, Tennessee)',
-            'Downtown Dixieland Band',
-            'The Martin Smith Quartet',
-            'Loose Moose String Band',
-            'The Manouchetones',
-            'Marley Chingus'],
+            'Live Music: Loose Moose String Band',
+            'Live Music: Cajun Session',
+            'Live Music: Buffalo Clover (from Nashville, Tennessee)',
+            'Live Music: Downtown Dixieland Band',
+            'Live Music: The Martin Smith Quartet',
+            'Live Music: Loose Moose String Band',
+            'Live Music: The Manouchetones',
+            'Live Music: Marley Chingus'],
             [row['headline'] for row in self.rows])
 
 

@@ -17,6 +17,8 @@ def main():
 
 def process(html_fobj):
     lxml_root = lxml.html.fromstring(html_fobj.read())
+    assert 1 == len(
+        lxml_root.xpath('//p[contains(text(), "Live music for this month")]'))
     table = lxml_root.cssselect('table.table-whats-on')[0]
     trs = table.xpath('./tr')
     assert len(trs) > 0
@@ -24,15 +26,15 @@ def process(html_fobj):
         assert len(tr) == 2
         (th, td) = tr
         day = th.text_content()
-        band_event = td.text_content()
-        L.debug('{}: {}'.format(day, band_event))
-        yield make_row(day, band_event)
+        headline = 'Live Music: {}'.format(td.text_content())
+        L.debug('{}: {}'.format(day, headline))
+        yield make_row(day, headline)
 
 
-def make_row(day, event):
+def make_row(day, headline):
     date = parse_date(day)
     L.debug("Parsed date '{}' as {}".format(day, date))
     return OrderedDict([
         ('venue', 'The Caledonia'),
         ('date', date),
-        ('headline', event)])
+        ('headline', headline)])
