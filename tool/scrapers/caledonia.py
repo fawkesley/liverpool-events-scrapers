@@ -3,10 +3,9 @@
 import logging
 L = logging.getLogger('livlist.caledonia')
 import lxml.html
-from dateutil.parser import parse as parse_datetime
 from collections import OrderedDict
 
-from utils import download_url
+from utils import download_url, parse_date
 
 URL = 'http://www.thecaledonialiverpool.com/whats-on/'
 
@@ -31,7 +30,7 @@ def process(html_fobj):
 
 
 def make_row(day, event):
-    date = parse_datetime(day).date()
+    date = parse_date(day)
     L.debug("Parsed date '{}' as {}".format(day, date))
     return OrderedDict([
         ('venue', 'The Caledonia'),
