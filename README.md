@@ -20,9 +20,7 @@ specific skills or knowledge to be able to attend.
 
 * http://www.stgeorgesliverpool.co.uk/whatson/
 * http://www.ljmu.ac.uk/events/
-* http://www.thebluecoat.org.uk/events/show/events ("Learn" & "Literature"
-  categories)
-
+* http://www.thebluecoat.org.uk/events/show/events (filter ranged events)
 ## Done (but disabled)
 
 Note that LEAF and FACT both have occasional talks / Q&As. Figure out how to
@@ -35,8 +33,8 @@ identify these and re-enable.
 
 ## Pending
 
-* http://www.liv.ac.uk/events/calendar.php?category=Lecture&month=10
 * http://www.philosophyinpubs.org.uk/schedule/all (filter by venue)
+* http://www.liv.ac.uk/events/calendar.php?category=Lecture&month=10
 * https://www.eventbrite.co.uk/directory?loc=Liverpool&is_miles=False&city=Liverpool&cat=other (perhaps get all events for some select organisers?)
 * meetup
 * http://www.merseysideskeptics.org.uk/ (https://twitter.com/merseyskeptics)

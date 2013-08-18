@@ -6,26 +6,13 @@ import lxml.html
 from collections import OrderedDict
 import re
 from utils import download_url, parse_date
-import requests
-from cStringIO import StringIO
 
 URL = 'http://www.thebluecoat.org.uk/events/show/events'
 
 
 def main():
-    for row in process(download_url(URL)):
+    for row in process(download_url()):
         yield row
-
-
-def download():
-    response = requests.post(URL, data=[
-        ('filter[]', '12'),
-        ('filter[]', '11'),
-        ('from',     ''),
-        ('to',       ''),
-        ('keyword',  '')])
-    response.raise_for_status()
-    return StringIO(response.content)
 
 
 def process(html_fobj):
