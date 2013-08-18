@@ -59,3 +59,8 @@ def make_row(date_string, headline):
         ('headline', headline),
         ('url', 'http://www.thisisleaf.co.uk/#/on-bold-street/events/')
     ])
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)
+    for row in main():
+        logging.info(row)
