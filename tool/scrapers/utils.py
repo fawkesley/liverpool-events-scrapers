@@ -22,7 +22,10 @@ def parse_date(date_string, not_before=None):
     >>> parse_date('3 January 2006', datetime.date(2006, 6, 1))
     datetime.date(2007, 1, 3)
     """
-    parsed = parse_datetime(date_string, dayfirst=True).date()
+    try:
+        parsed = parse_datetime(date_string, dayfirst=True).date()
+    except ValueError as e:
+        raise ValueError("{} date='{}'".format(e, date_string))
     if not_before and parsed < not_before:
         parsed = datetime.date(
             1 + not_before.year,

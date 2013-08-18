@@ -12,6 +12,7 @@ from scrapers import stgeorgeshall
 from scrapers import fact
 from scrapers import kazimier
 from scrapers import ljmu
+from scrapers import bluecoat
 
 SAMPLE_DIR = join(dirname(abspath(__file__)), 'sample_data')
 
@@ -243,6 +244,59 @@ class KazimierScraperTest(unittest.TestCase):
         urls = [x['url'] for x in self.rows]
         assert_equal(
             'http://www.thekazimier.co.uk/listing/00000000175/',
+            urls[0])
+
+
+class BluecoatScraperTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        with open(join(SAMPLE_DIR, 'bluecoat_listings.html'), 'r') as f:
+            cls.rows = list(bluecoat.process(f))
+
+    def test_correct_number_of_events(self):
+        assert_equal(16, len(self.rows))
+
+    def test_venue(self):
+        assert_equal(
+            set(['The Bluecoat']),
+            set([x['venue'] for x in self.rows]))
+
+    def test_organiser(self):
+        assert_equal(
+            set(['The Bluecoat']),
+            set([x['organiser'] for x in self.rows]))
+
+    def test_all_dates_are_datetime_dates(self):
+        dates = [row['date'] for row in self.rows]
+        assert_true(
+            all([isinstance(date, datetime.date) for date in dates]))
+
+    def test_date_range_as_expected(self):
+        """
+        Check that dates without a year are being filled in correctly as next
+        year rather than this year.
+        """
+        dates = [row['date'] for row in self.rows]
+        assert_equal(datetime.date(2013, 7, 11), min(dates))
+        assert_equal(datetime.date(2013, 10, 17), max(dates))
+
+    def test_the_headlines_are_correct(self):
+        assert_equal([
+            'Philosophy in Pubs',
+            'Talking Poetry'
+        ],
+            [row['headline'] for row in self.rows[0:2]])
+
+        assert_equal([
+            'Jarlath Killeen and ',
+            'Scrips'
+        ],
+            [row['headline'] for row in self.rows[-2:]])
+
+    def test_urls(self):
+        urls = [x['url'] for x in self.rows]
+        assert_equal(
+                'http://www.thebluecoat.org.uk/events/view/events/1054',
             urls[0])
 
 
