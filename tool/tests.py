@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 
 import unittest
-from nose.tools import assert_equal, assert_true
+from nose.tools import assert_equal, assert_true, assert_false
 from os.path import join, dirname, abspath
 import datetime
 
 from scrapers import caledonia
 from scrapers import leaf
 from scrapers import stgeorgeshall
+from scrapers import fact
 
 SAMPLE_DIR = join(dirname(abspath(__file__)), 'sample_data')
 
@@ -102,7 +103,6 @@ class LeafScraperTest(unittest.TestCase):
         assert_equal(datetime.date(2013, 7, 3), self.rows[-1]['date'])
 
     def test_the_headlines_are_correct(self):
-        self.maxDiff = None
         assert_equal([
             'Leaf Pudding Club',
             'Retro Sunday',
@@ -114,3 +114,56 @@ class LeafScraperTest(unittest.TestCase):
             'Spotify Wednesdays'
         ],
             [row['headline'] for row in self.rows[-2:]])
+
+
+class FactScraperTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        with open(join(SAMPLE_DIR, 'fact_listings.html'), 'r') as f:
+            cls.rows = list(fact.get_all_listings(f))
+
+    def test_correct_number_of_events(self):
+        assert_equal(114, len(self.rows))
+
+    def test_venue_always_fact(self):
+        assert_equal(
+            set(['FACT']),
+            set([x['venue'] for x in self.rows]))
+
+    def test_all_dates_are_datetime_dates(self):
+        dates = [row['date'] for row in self.rows]
+        assert_true(
+            all([isinstance(date, datetime.date) for date in dates]))
+
+    def test_the_headlines_are_correct(self):
+        assert_equal([
+            u'Alan Partridge: Alpha Papa (1)',
+            u"The World's End"
+        ],
+            [row['headline'] for row in self.rows[0:2]])
+
+        assert_equal([
+            u'Met. Encore: La Cenerentola',
+            u'ROH. Live: Manon Lescaut'
+        ],
+            [row['headline'] for row in self.rows[-2:]])
+
+    def test_repeated_event_identified(self):
+        with open(join(SAMPLE_DIR, 'fact_repeated.html'), 'r') as f:
+            assert_false(fact.is_single_event(f))
+
+    def test_exhibition_date_range_event_identified(self):
+        with open(join(SAMPLE_DIR, 'fact_exhib.html'), 'r') as f:
+            assert_false(fact.is_single_event(f))
+
+    def test_single_event_identified(self):
+        with open(join(SAMPLE_DIR, 'fact_single.html'), 'r') as f:
+            assert_true(fact.is_single_event(f))
+
+    def test_child_event_identified(self):
+        with open(join(SAMPLE_DIR, 'fact_child_event.html'), 'r') as f:
+            assert_true(fact.is_child_event(f))
+
+    def test_non_child_event_identified(self):
+        with open(join(SAMPLE_DIR, 'fact_single.html'), 'r') as f:
+            assert_false(fact.is_child_event(f))
