@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
 import unittest
 from nose.tools import assert_equal, assert_true, assert_false
@@ -10,6 +11,7 @@ from scrapers import leaf
 from scrapers import stgeorgeshall
 from scrapers import fact
 from scrapers import kazimier
+from scrapers import ljmu
 
 SAMPLE_DIR = join(dirname(abspath(__file__)), 'sample_data')
 
@@ -241,4 +243,59 @@ class KazimierScraperTest(unittest.TestCase):
         urls = [x['url'] for x in self.rows]
         assert_equal(
             'http://www.thekazimier.co.uk/listing/00000000175/',
+            urls[0])
+
+
+class LjmuScraperTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        with open(join(SAMPLE_DIR, 'ljmu_listings.html'), 'r') as f:
+            cls.rows = list(ljmu.process(f))
+
+    def test_correct_number_of_events(self):
+        assert_equal(4, len(self.rows))
+
+    def test_venue(self):
+        assert_equal(
+            set(['Redmonds Building', 'Liverpool Philharmonic Hall']),
+            set([x['venue'] for x in self.rows]))
+
+    def test_organiser(self):
+        assert_equal(
+            set(['LJMU']),
+            set([x['organiser'] for x in self.rows]))
+
+    def test_all_dates_are_datetime_dates(self):
+        dates = [row['date'] for row in self.rows]
+        assert_true(
+            all([isinstance(date, datetime.date) for date in dates]))
+
+    def test_date_range_as_expected(self):
+        """
+        Check that dates without a year are being filled in correctly as next
+        year rather than this year.
+        """
+        dates = [row['date'] for row in self.rows]
+        assert_equal(datetime.date(2013, 9, 5), min(dates))
+        assert_equal(datetime.date(2013, 11, 28), max(dates))
+
+    def test_the_headlines_are_correct(self):
+        assert_equal([
+            u'Astrobiology: The Hunt for Alien Life',
+            (u'Roscoe Lecture Series: Mayors and their Cities – the '
+             'Challenges and Opportunities')
+        ],
+            [row['headline'] for row in self.rows[0:2]])
+
+        assert_equal([
+            u'Roscoe Lecture Series: ‘Overcoming Disability and Adversity’',
+            (u'Roscoe Lecture Series: 1914 – Why Remembering the Great War'
+             ' Matters')
+        ],
+            [row['headline'] for row in self.rows[-2:]])
+
+    def test_urls(self):
+        urls = [x['url'] for x in self.rows]
+        assert_equal(
+            'http://ljmuastrobiologypubliclecture.eventbrite.co.uk/',
             urls[0])
