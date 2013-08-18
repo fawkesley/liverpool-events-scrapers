@@ -13,6 +13,7 @@ from scrapers import fact
 from scrapers import kazimier
 from scrapers import ljmu
 from scrapers import bluecoat
+from scrapers import philosophyinpubs
 
 SAMPLE_DIR = join(dirname(abspath(__file__)), 'sample_data')
 
@@ -296,7 +297,78 @@ class BluecoatScraperTest(unittest.TestCase):
     def test_urls(self):
         urls = [x['url'] for x in self.rows]
         assert_equal(
-                'http://www.thebluecoat.org.uk/events/view/events/1054',
+            'http://www.thebluecoat.org.uk/events/view/events/1054',
+            urls[0])
+
+
+class PhilosophyInPubsScraperTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        with open(join(SAMPLE_DIR,
+                       'philosophyinpubs_venues.html'), 'r') as f:
+            cls.excluded_venues = philosophyinpubs.get_excluded_venue_ids(f)
+        assert_equal(47, len(cls.excluded_venues))
+        assert_equal(
+            '05cccecb1a256b561cfc858a4e907879',
+            cls.excluded_venues[0])
+
+        with open(join(SAMPLE_DIR,
+                       'philosophyinpubs_listings.html'), 'r') as f:
+            cls.rows = list(philosophyinpubs.process(f, cls.excluded_venues))
+
+    def test_correct_number_of_events(self):
+        assert_equal(28, len(self.rows))
+
+    def test_venue(self):
+        assert_equal(
+            set([
+                'The Halfway House',
+                'Chinese Pagoda Centre',
+                'The Victoria Hotel (Waterloo)',
+                'The Birkey Hotel (Crosby)',
+                'Allerton Community Philosophy Group',
+                'Bluecoat Art Centre',
+                'The Friday Forum',
+                'The Buck ith Vine (Ormskirk)',
+                ]),
+            set([x['venue'] for x in self.rows]))
+
+    def test_organiser(self):
+        assert_equal(
+            set(['Philosophy In Pubs']),
+            set([x['organiser'] for x in self.rows]))
+
+    def test_all_dates_are_datetime_dates(self):
+        dates = [row['date'] for row in self.rows]
+        assert_true(
+            all([isinstance(date, datetime.date) for date in dates]))
+
+    def test_date_range_as_expected(self):
+        """
+        Check that dates without a year are being filled in correctly as next
+        year rather than this year.
+        """
+        dates = [row['date'] for row in self.rows]
+        assert_equal(datetime.date(2013, 8, 20), min(dates))
+        assert_equal(datetime.date(2013, 12, 12), max(dates))
+
+    def test_the_headlines_are_correct(self):
+        assert_equal([
+            'Call me cynical ...',
+            'Does Freedom of Speech serve any Purpose ?'],
+            [row['headline'] for row in self.rows[0:2]])
+
+        assert_equal([
+            'Is there meaning to life?',
+            'How can we judge other people?'
+        ],
+            [row['headline'] for row in self.rows[-2:]])
+
+    def test_urls(self):
+        urls = [x['url'] for x in self.rows]
+        assert_equal(
+            ('http://www.philosophyinpubs.org.uk/venues/view/'
+             'ce780115d412d1d9ffb2ffcb5e85136d'),
             urls[0])
 
 
