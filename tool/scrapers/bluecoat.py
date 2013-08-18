@@ -11,7 +11,7 @@ URL = 'http://www.thebluecoat.org.uk/events/show/events'
 
 
 def main():
-    for row in process(download_url()):
+    for row in process(download_url(URL)):
         yield row
 
 
