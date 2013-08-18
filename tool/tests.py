@@ -79,6 +79,12 @@ class StGeorgesHallTest(unittest.TestCase):
             ],
             [row['headline'] for row in self.rows[-2:]])
 
+    def test_urls(self):
+        urls = [x['url'] for x in self.rows]
+        assert_equal(
+                'http://www.stgeorgesliverpool.co.uk/whatson/details.asp?id=226947',
+            urls[0])
+
 
 class LeafScraperTest(unittest.TestCase):
     @classmethod

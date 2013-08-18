@@ -6,8 +6,8 @@ import lxml.html
 from collections import OrderedDict
 from utils import download_url, parse_date
 
-URL = ('http://www.stgeorgesliverpool.co.uk/whatson/index.asp?'
-       'cat=event&m=0&yr=0')
+BASE_URL = 'http://www.stgeorgesliverpool.co.uk'
+URL = BASE_URL + '/whatson/index.asp?cat=event&m=0&yr=0'
 
 
 def main():
@@ -21,6 +21,7 @@ def process(html_fobj):
     assert len(divs) > 0
     for div in divs:
         headline = div.xpath('./a')[0].text_content().strip()
+        url = BASE_URL + div.xpath('./a/@href')[0]
         date_tag = div.xpath('./em[@class="date-time cf"]')[0]
         date_string = date_tag.text_content()
         if is_date_range(date_string):
@@ -28,8 +29,7 @@ def process(html_fobj):
             L.info("Ignoring event {} with date range {}".format(
                 headline, date_string))
             continue
-        L.debug("'{}' : '{}'".format(headline, date_string))
-        yield make_row(date_string, headline)
+        yield make_row(date_string, headline, url)
 
 
 def is_date_range(date_string):
@@ -53,13 +53,16 @@ def clean_headline(headline):
     return headline
 
 
-def make_row(date_string, headline):
+def make_row(date_string, headline, url):
+    L.debug("'{}' : '{}'".format(headline, date_string))
     date = parse_date(date_string)
     L.debug("Parsed date '{}' as {}".format(date_string, date))
     return OrderedDict([
         ('venue', "St George's Hall"),
         ('date', date),
-        ('headline', headline)])
+        ('headline', headline),
+        ('url', url),
+    ])
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
