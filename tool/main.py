@@ -25,11 +25,17 @@ def main():
 
     for row in scrapers.caledonia.main():
         save_row(row)
+
     for row in scrapers.leaf.main():
         save_row(row)
+
     for row in scrapers.stgeorgeshall.main():
         save_row(row)
+
     for row in scrapers.fact.main():
+        save_row(row)
+
+    for row in scrapers.kazimier.main():
         save_row(row)
 
     update_status()

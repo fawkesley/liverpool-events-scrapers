@@ -9,6 +9,7 @@ from scrapers import caledonia
 from scrapers import leaf
 from scrapers import stgeorgeshall
 from scrapers import fact
+from scrapers import kazimier
 
 SAMPLE_DIR = join(dirname(abspath(__file__)), 'sample_data')
 
@@ -87,7 +88,8 @@ class StGeorgesHallTest(unittest.TestCase):
     def test_urls(self):
         urls = [x['url'] for x in self.rows]
         assert_equal(
-                'http://www.stgeorgesliverpool.co.uk/whatson/details.asp?id=226947',
+            'http://www.stgeorgesliverpool.co.uk/whatson/details.asp'
+            '?id=226947',
             urls[0])
 
 
@@ -192,3 +194,51 @@ class FactScraperTest(unittest.TestCase):
     def test_non_child_event_identified(self):
         with open(join(SAMPLE_DIR, 'fact_single.html'), 'r') as f:
             assert_false(fact.is_child_event(f))
+
+
+class KazimierScraperTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        with open(join(SAMPLE_DIR, 'kazimier_listings.html'), 'r') as f:
+            cls.rows = list(kazimier.process(f))
+
+    def test_correct_number_of_events(self):
+        assert_equal(27, len(self.rows))
+
+    def test_venue_always_fact(self):
+        assert_equal(
+            set(['Kazimier']),
+            set([x['venue'] for x in self.rows]))
+
+    def test_all_dates_are_datetime_dates(self):
+        dates = [row['date'] for row in self.rows]
+        assert_true(
+            all([isinstance(date, datetime.date) for date in dates]))
+
+    def test_date_range_as_expected(self):
+        """
+        Check that dates without a year are being filled in correctly as next
+        year rather than this year.
+        """
+        dates = [row['date'] for row in self.rows]
+        assert_equal(datetime.date(2013, 8, 21), min(dates))
+        assert_equal(datetime.date(2013, 12, 7), max(dates))
+
+    def test_the_headlines_are_correct(self):
+        assert_equal([
+            u'Manifold - A living exhibition',
+            u'Othello'
+        ],
+            [row['headline'] for row in self.rows[0:2]])
+
+        assert_equal([
+            u'Jonathan Wilson',
+            u'John Smith'
+        ],
+            [row['headline'] for row in self.rows[-2:]])
+
+    def test_urls(self):
+        urls = [x['url'] for x in self.rows]
+        assert_equal(
+            'http://www.thekazimier.co.uk/listing/00000000175/',
+            urls[0])
