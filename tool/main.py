@@ -28,6 +28,9 @@ def main():
     for row in scrapers.stgeorgeshall.main():
         save_row(row)
 
+    for row in scrapers.bluecoat.main():
+        save_row(row)
+
     #for row in scrapers.leaf.main():
     #    save_row(row)
 
