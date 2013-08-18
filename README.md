@@ -21,6 +21,22 @@ specific skills or knowledge to be able to attend.
 * http://www.stgeorgesliverpool.co.uk/whatson/
 * http://www.ljmu.ac.uk/events/
 * http://www.thebluecoat.org.uk/events/show/events (filter ranged events)
+* http://www.philosophyinpubs.org.uk/schedule/all (filter by venue)
+
+## Pending
+
+* http://www.merseysideskeptics.org.uk/ (https://twitter.com/merseyskeptics)
+* http://www.liv.ac.uk/events/calendar.php?category=Lecture&month=10
+* http://www.liv.ac.uk/heseltine-institute/our-events/
+* http://www.liv.ac.uk/conted/whats_on/lectures-events/
+* http://www.liverpoolmuseums.org.uk/
+* https://www.eventbrite.co.uk/directory?loc=Liverpool&is_miles=False&city=Liverpool&cat=other (perhaps get all events for some select organisers?)
+* meetup
+* http://www.liverpoolquakers.org.uk/news-events/
+* http://www.tate.org.uk/whats-on
+* Ignite
+* Social media cafe?
+
 ## Done (but disabled)
 
 Note that LEAF and FACT both have occasional talks / Q&As. Figure out how to
@@ -30,17 +46,6 @@ identify these and re-enable.
 * http://www.thisisleaf.co.uk/#/on-bold-street/events/
 * FACT
 * Kazimier
-
-## Pending
-
-* http://www.philosophyinpubs.org.uk/schedule/all (filter by venue)
-* http://www.liv.ac.uk/events/calendar.php?category=Lecture&month=10
-* https://www.eventbrite.co.uk/directory?loc=Liverpool&is_miles=False&city=Liverpool&cat=other (perhaps get all events for some select organisers?)
-* meetup
-* http://www.merseysideskeptics.org.uk/ (https://twitter.com/merseyskeptics)
-* http://www.liverpoolquakers.org.uk/news-events/
-* Ignite
-* Social media cafe?
 
 # Out of Scope (?)
 
