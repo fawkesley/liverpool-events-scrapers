@@ -1,6 +1,18 @@
-# Aim
+# Spoken Liverpool 
 
-* Arts, Crafts, History, Music and Culture.
+Spreading the Word about Talks, Discussions and Workshops in Liverpool.
+
+# Audience
+
+Events should be suitable for any interested person; they should not require
+specific skills or knowledge to be able to attend.
+
+# Events 
+
+* Talks & Lectures
+* Discussions
+* Lectures
+* Q & A sessions
 
 # Data Sources
 
@@ -14,16 +26,40 @@
 
 ## Pending
 
-* http://www.thebluecoat.org.uk/events/show/events
-* http://www.viewliverpool.co.uk/listings/
-* http://www.thelowdownmagazine.com/Events-3531.html
+* http://www.ljmu.ac.uk/events/
+* http://www.thebluecoat.org.uk/events/show/events ("Learn" & "Literature"
+  categories)
+* http://www.liv.ac.uk/events/calendar.php?category=Lecture&month=10
+* http://www.philosophyinpubs.org.uk/schedule/all (filter by venue)
+* https://www.eventbrite.co.uk/directory?loc=Liverpool&is_miles=False&city=Liverpool&cat=other (perhaps get all events for some select organisers?)
+* meetup
+* http://www.merseysideskeptics.org.uk/ (https://twitter.com/merseyskeptics)
+* http://www.liverpoolquakers.org.uk/news-events/
+* Ignite
+* Social media cafe?
+
+# Out of Scope (?)
+
+* http://www.liverpoolphil.com/14/whats-on-listings/whats-on.html
 * Mello Mello (no info online atm, only poster scan)
 * Bombed out church
-* eventbrite
-* meetup
 * http://www.skiddle.com/whats-on/Liverpool/St-Luke%27s-%28Bombed-Out%29-Church/
 * http://www.campandfurnace.com/calendar/
 * http://www.palmhouse.org.uk/whats-on.php
+
+# Other sites (live music etc)
+
+* http://www.liverpool-live.info/
+  "Liverpool Live is an online media company covering live music, theatre, the
+  creative arts, festivals and major events around the Merseyside area. We are
+  based right in the heart of the Baltic Triangle area of the city, just a 10
+  min walk from Liverpool ONE shopping centre."
+  https://twitter.com/LiverpoolLive
+
+* http://www.viewliverpool.co.uk/listings/
+
+
+* http://www.thelowdownmagazine.com/Events-3531.html
 
 # Essential Fields
 
