@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 import logging
-L = logging.getLogger('livlist.fact')
+L = logging.getLogger('livlist.kazimier')
 
 import lxml.html
 from collections import OrderedDict

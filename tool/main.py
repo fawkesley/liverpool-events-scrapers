@@ -26,20 +26,20 @@ def main():
     for row in scrapers.ljmu.main():
         save_row(row)
 
-    for row in scrapers.leaf.main():
-        save_row(row)
-
     for row in scrapers.stgeorgeshall.main():
         save_row(row)
 
-    for row in scrapers.fact.main():
-        save_row(row, table_name='film_and_theatre')
+    #for row in scrapers.leaf.main():
+    #    save_row(row)
 
-    for row in scrapers.caledonia.main():
-        save_row(row, table_name='music')
+    #for row in scrapers.fact.main():
+    #    save_row(row, table_name='film_and_theatre')
 
-    for row in scrapers.kazimier.main():
-        save_row(row, table_name='music')
+    #for row in scrapers.caledonia.main():
+    #    save_row(row, table_name='music')
+
+    #for row in scrapers.kazimier.main():
+    #    save_row(row, table_name='music')
 
     update_status()
 
