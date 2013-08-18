@@ -18,17 +18,23 @@ specific skills or knowledge to be able to attend.
 
 ## Done
 
+* http://www.stgeorgesliverpool.co.uk/whatson/
+* http://www.ljmu.ac.uk/events/
+* http://www.thebluecoat.org.uk/events/show/events ("Learn" & "Literature"
+  categories)
+
+## Done (but disabled)
+
+Note that LEAF and FACT both have occasional talks / Q&As. Figure out how to
+identify these and re-enable.
+
 * http://www.thecaledonialiverpool.com/whats-on/
 * http://www.thisisleaf.co.uk/#/on-bold-street/events/
-* http://www.stgeorgesliverpool.co.uk/whatson/
 * FACT
 * Kazimier
 
 ## Pending
 
-* http://www.ljmu.ac.uk/events/
-* http://www.thebluecoat.org.uk/events/show/events ("Learn" & "Literature"
-  categories)
 * http://www.liv.ac.uk/events/calendar.php?category=Lecture&month=10
 * http://www.philosophyinpubs.org.uk/schedule/all (filter by venue)
 * https://www.eventbrite.co.uk/directory?loc=Liverpool&is_miles=False&city=Liverpool&cat=other (perhaps get all events for some select organisers?)
