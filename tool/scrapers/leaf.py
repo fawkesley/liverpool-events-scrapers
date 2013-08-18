@@ -56,4 +56,6 @@ def make_row(date_string, headline):
     return OrderedDict([
         ('venue', 'LEAF on Bold Street'),
         ('date', date),
-        ('headline', headline)])
+        ('headline', headline),
+        ('url', 'http://www.thisisleaf.co.uk/#/on-bold-street/events/')
+    ])

@@ -121,6 +121,11 @@ class LeafScraperTest(unittest.TestCase):
         ],
             [row['headline'] for row in self.rows[-2:]])
 
+    def test_urls(self):
+        assert_equal(
+            set(['http://www.thisisleaf.co.uk/#/on-bold-street/events/']),
+            set([x['url'] for x in self.rows]))
+
 
 class FactScraperTest(unittest.TestCase):
     @classmethod
