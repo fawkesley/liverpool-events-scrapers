@@ -9,9 +9,12 @@
 * http://www.thecaledonialiverpool.com/whats-on/
 * http://www.thisisleaf.co.uk/#/on-bold-street/events/
 * http://www.stgeorgesliverpool.co.uk/whatson/
+* FACT
+* Kazimier
 
 ## Pending
 
+* http://www.thebluecoat.org.uk/events/show/events
 * http://www.viewliverpool.co.uk/listings/
 * http://www.thelowdownmagazine.com/Events-3531.html
 * Mello Mello (no info online atm, only poster scan)
@@ -27,10 +30,10 @@
 1. date
 2. venue
 3. headline
+4. url (specific event or list of events)
 
 # Optional Fields
 
 * image
-* url
 * description
 * organiser
