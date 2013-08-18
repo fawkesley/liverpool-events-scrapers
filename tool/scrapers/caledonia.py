@@ -37,4 +37,6 @@ def make_row(day, headline):
     return OrderedDict([
         ('venue', 'The Caledonia'),
         ('date', date),
-        ('headline', headline)])
+        ('headline', headline),
+        ('url', 'http://www.thecaledonialiverpool.com/whats-on/'),
+    ])

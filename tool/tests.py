@@ -44,6 +44,11 @@ class CaledoniaScraperTest(unittest.TestCase):
             'Live Music: Marley Chingus'],
             [row['headline'] for row in self.rows])
 
+    def test_urls(self):
+        assert_equal(
+            set(['http://www.thecaledonialiverpool.com/whats-on/']),
+            set([x['url'] for x in self.rows]))
+
 
 class StGeorgesHallTest(unittest.TestCase):
     @classmethod
