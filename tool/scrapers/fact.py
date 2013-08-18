@@ -40,6 +40,9 @@ def get_all_listings(listings_fobj):
     lxml_root = lxml.html.fromstring(listings_fobj.read())
     divs = lxml_root.xpath('//div[@id="events_list"]/div[@class="item"]')
     assert len(divs) > 0
+
+    earliest_date = None
+
     for div in divs:
         headline = clean_headline(
             div.xpath('./h4/a')[0].text_content().strip())
@@ -47,8 +50,10 @@ def get_all_listings(listings_fobj):
         url = BASE_URL + div.xpath('./h4/a/@href')[0]
         date_tag = div.xpath('./span[@class="from"]')[0]
         date_string = extract_date(date_tag.text_content())
-        L.debug("'{}' : '{}'".format(headline, date_string))
-        yield make_row(date_string, headline, url)
+
+        if not earliest_date:
+            earliest_date = parse_date(date_string)
+        yield make_row(date_string, earliest_date, headline, url)
 
 
 def is_child_event(event_fobj):
@@ -96,8 +101,9 @@ def clean_headline(headline):
     return headline
 
 
-def make_row(date_string, headline, url):
-    date = parse_date(date_string)
+def make_row(date_string, earliest_date, headline, url):
+    L.debug("'{}' : '{}'".format(headline, date_string))
+    date = parse_date(date_string, not_before=earliest_date)
     L.debug("Parsed date '{}' as {}".format(date_string, date))
     return OrderedDict([
         ('venue', "FACT"),

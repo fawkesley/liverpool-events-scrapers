@@ -135,6 +135,15 @@ class FactScraperTest(unittest.TestCase):
         assert_true(
             all([isinstance(date, datetime.date) for date in dates]))
 
+    def test_date_range_as_expected(self):
+        """
+        Check that dates without a year are being filled in correctly as next
+        year rather than this year.
+        """
+        dates = [row['date'] for row in self.rows]
+        assert_equal(datetime.date(2013, 8, 17), min(dates))
+        assert_equal(datetime.date(2014, 6, 24), max(dates))
+
     def test_the_headlines_are_correct(self):
         assert_equal([
             u'Alan Partridge: Alpha Papa (1)',
