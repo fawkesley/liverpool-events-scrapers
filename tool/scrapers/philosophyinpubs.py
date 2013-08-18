@@ -20,7 +20,7 @@ def main():
 
     for row in process(
             download_url(EVENTS_URL),
-            exclude_venue_ids=excluded_venues):
+            excluded_venue_ids=excluded_venues):
         yield row
 
 
