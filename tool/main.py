@@ -23,9 +23,6 @@ def main():
     logging.basicConfig(level=logging.DEBUG)
     install_cache()
 
-    for row in scrapers.caledonia.main():
-        save_row(row)
-
     for row in scrapers.leaf.main():
         save_row(row)
 
@@ -33,19 +30,22 @@ def main():
         save_row(row)
 
     for row in scrapers.fact.main():
-        save_row(row)
+        save_row(row, table_name='film_and_theatre')
+
+    for row in scrapers.caledonia.main():
+        save_row(row, table_name='music')
 
     for row in scrapers.kazimier.main():
-        save_row(row)
+        save_row(row, table_name='music')
 
     update_status()
 
 
-def save_row(row):
+def save_row(row, table_name='events'):
     scraperwiki.sqlite.save(
         unique_keys=UNIQUE_KEYS,
         data=row,
-        table_name='events')
+        table_name=table_name)
 
 
 def update_status():
