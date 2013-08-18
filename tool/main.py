@@ -15,7 +15,6 @@ import logging
 import scrapers
 
 
-BASE_URL = 'http://www.google.com'
 UNIQUE_KEYS = ['venue', 'date', 'headline']
 
 
