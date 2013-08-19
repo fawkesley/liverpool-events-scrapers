@@ -24,7 +24,7 @@ specific skills or knowledge to be able to attend.
 * http://www.philosophyinpubs.org.uk/schedule/all (filter by venue)
 
 ## Pending
-
+* http://www.waterstones.com/waterstonesweb/displayDetailEvent.do?searchType=2&store=442|WATERSTONE%27S%20LIVERPOOL%20ONE&sFilter=3
 * http://www.merseysideskeptics.org.uk/ (https://twitter.com/merseyskeptics)
 * http://www.liv.ac.uk/events/calendar.php?category=Lecture&month=10
 * http://www.liv.ac.uk/heseltine-institute/our-events/
