@@ -22,8 +22,8 @@ def main():
     logging.basicConfig(level=logging.DEBUG)
     install_cache()
 
-    for row in scrapers.ljmu.main():
-        save_row(row)
+    #for row in scrapers.ljmu.main():
+    #    save_row(row)
 
     for row in scrapers.stgeorgeshall.main():
         save_row(row)
